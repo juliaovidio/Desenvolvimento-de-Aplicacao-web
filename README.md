@@ -1,7 +1,7 @@
 # PI-Desenvolvimento-de-Aplica-o-Web
 
 # Descrição do projeto:
-Este projeto é um site desenvolvido para uma loja de aviamentos, com o objetivo de proporcionar uma experiência completa tanto para o cliente quanto para o administrador da loja. O site foi construído com HTML, CSS e JSON, e está integrado a uma API que realiza a comunicação com o banco de dados. A aplicação estará rodando localmente http://localhost:3030 
+Este projeto é um site desenvolvido para uma loja de aviamentos, com o objetivo de oferecer uma experiência completa e eficiente tanto para os clientes quanto para os administradores. A plataforma foi construída utilizando HTML, CSS e JSON, e integra-se a uma API responsável pela comunicação com o banco de dados, garantindo dinamismo e atualização em tempo real das informações. A aplicação estará rodando localmente http://localhost:3030 
 
 # As pastas de acordo com as materias 
 PI2025 - materia: Tecnologias para Desenvolvimento Web
@@ -24,4 +24,6 @@ pi crud - materia: Integração de Dados
 - Clique em "Abrir".
 - Abra o terminal do VS Code:
 - Vá em Terminal > Novo Terminal (ou pressione Ctrl + )
-- Execute o comando para instalar as dependências: npm install --save npm start node index.js npx nodemon index.js
+- Execute o comando para instalar as dependências:
+- npm install --save (instalar os arquivos: bcryptjs, cors, dotenv, expressjsonwebtolken, knex, mysql2, nodemon, postman)
+- npm start 
