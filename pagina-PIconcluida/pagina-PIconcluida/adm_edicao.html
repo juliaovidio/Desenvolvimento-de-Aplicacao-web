@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="css/style_admedicao.css">
+  <title>Editar Produto</title>
+</head>
+<body>
+  <script>
+    fetch("layout_adm.html")
+      .then(response => response.text())
+      .then(data => document.getElementById("layout").innerHTML = data);
+  </script>
+
+  <!-- Layout Header -->
+  <div id="layout"></div>
+  
+  
+  <div class="container">
+
+  <h1>Editar Produto</h1>
+  <br>
+
+  <!-- Campo de ID manual -->
+  <label for="idprodutoTexto">ID do Produto (digite):</label>
+  <input type="number" id="idprodutoTexto" name="idprodutoTexto" min="1">
+
+  <!-- Select de produtos -->
+  <label for="idprodutoSelect">Ou selecione um Produto:</label>
+  <select id="idprodutoSelect" name="idprodutoSelect">
+    <option value="">-- Selecione um produto --</option>
+  </select>
+
+  <!-- Formulário -->
+  <form id="formEditarProduto">
+    <label for="produtoDescricao">Descrição:</label>
+    <input type="text" id="produtoDescricao" name="descricao" required>
+
+    <label for="produtoEstoque">Estoque:</label>
+    <input type="number" id="produtoEstoque" name="estoque" required>
+
+    <label for="produtoValor">Valor:</label>
+    <input type="number" id="produtoValor" name="valor" step="0.01" required>
+
+    <label for="produtoCategoria">Categoria:</label>
+    <select id="produtoCategoria" name="categoria_idCategoria" required>
+      <option value="">Selecione uma categoria</option>
+    </select>
+
+    <br><br>
+    <button type="submit">Atualizar Produto</button>
+  </form>
+
+  <!-- Resultado -->
+  <h2>Resultado:</h2>
+   <div id="resultadoEdicao" class="resultado" ></div>
+  </div>
+
+  <!-- Script principal -->
+  <script>
+    function carregarCategorias() {
+      fetch("http://localhost:3030/categorias")
+        .then(res => res.json())
+        .then(data => {
+          const categorias = data.values;
+          const select = document.getElementById("produtoCategoria");
+          select.innerHTML = '<option value="">Selecione uma categoria</option>';
+          categorias.forEach(cat => {
+            const option = document.createElement("option");
+            option.value = cat.idCategoria;
+            option.textContent = cat.nome;
+            select.appendChild(option);
+          });
+        });
+    }
+
+    function carregarProdutos() {
+      fetch("http://localhost:3030/produtos")
+        .then(res => res.json())
+        .then(data => {
+          const produtos = data.values;
+          const selectProdutos = document.getElementById("idprodutoSelect");
+          selectProdutos.innerHTML = '<option value="">-- Selecione um produto --</option>';
+
+          produtos.forEach(prod => {
+            const option = document.createElement("option");
+            const id = prod.idProduto ?? prod.id ?? prod.idproduto ?? prod.ID;
+            option.value = id;
+            option.textContent = `ID: ${id} - ${prod.descricao ?? prod.nome ?? "Sem descrição"}`;
+
+            option.textContent = `ID: ${option.value} - ${prod.descricao}`;
+            selectProdutos.appendChild(option);
+          });
+        });
+    }
+
+    function carregarDadosProduto(id) {
+      if (!id) {
+        limparCampos();
+        return;
+      }
+
+      fetch(`http://localhost:3030/produto/${id}`)
+        .then(res => {
+          if (!res.ok) throw new Error("Produto não encontrado");
+          return res.json();
+        })
+        .then(data => {
+          document.getElementById("produtoDescricao").value = data.descricao || "";
+          document.getElementById("produtoEstoque").value = data.estoque || "";
+          document.getElementById("produtoValor").value = data.valor || "";
+          document.getElementById("produtoCategoria").value = data.categoria_idCategoria || "";
+        })
+        .catch(err => {
+          alert(err.message);
+          limparCampos();
+        });
+    }
+
+    function limparCampos() {
+      document.getElementById("produtoDescricao").value = "";
+      document.getElementById("produtoEstoque").value = "";
+      document.getElementById("produtoValor").value = "";
+      document.getElementById("produtoCategoria").value = "";
+    }
+
+    const inputIdTexto = document.getElementById("idprodutoTexto");
+    const selectIdProduto = document.getElementById("idprodutoSelect");
+
+    inputIdTexto.addEventListener("change", () => {
+      const id = inputIdTexto.value;
+      selectIdProduto.value = id || "";
+      carregarDadosProduto(id);
+    });
+
+    selectIdProduto.addEventListener("change", () => {
+      const id = selectIdProduto.value;
+      inputIdTexto.value = id || "";
+      carregarDadosProduto(id);
+    });
+
+    document.getElementById("formEditarProduto").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const idproduto = inputIdTexto.value;
+      if (!idproduto) {
+        alert("Informe o ID do produto antes de atualizar.");
+        return;
+      }
+
+      const dados = {
+        descricao: document.getElementById("produtoDescricao").value,
+        estoque: Number(document.getElementById("produtoEstoque").value),
+        valor: Number(document.getElementById("produtoValor").value),
+        categoria_idCategoria: document.getElementById("produtoCategoria").value
+      };
+
+      fetch(`http://localhost:3030/produto/${idproduto}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dados)
+      })
+      .then(res => res.json())
+     .then(data => {
+      const resultado = document.getElementById("resultadoEdicao");
+      
+      if (data.success || data.sucess) {
+        resultado.textContent = "Produto atualizado com sucesso!";
+        resultado.classList.remove("error");
+      } else {
+        resultado.textContent = data.message || "Erro ao atualizar.";
+        resultado.classList.add("error");
+      }
+
+      resultado.style.display = "block";
+    })
+
+    })
+      
+
+
+    carregarCategorias();
+    carregarProdutos();
+  </script>
+
+  <!-- Rodapé -->
+  <div id="rodape"></div>
+  <script>
+    fetch("rodape.html")
+      .then(response => response.text())
+      .then(data => document.getElementById("rodape").innerHTML = data);
+  </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fffaf7;
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  background-color: #89B2C4;
+  padding: 20px 0;
+  text-align: center;
+  color: white;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+}
+
+.contato {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.contato h2 {
+  color: #000000;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.contato p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+button {
+  background-color: #5c524f;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #000000;
+}
+
+.info-contato {
+  margin-top: 30px;
+  text-align: left;
+}
+
+footer {
+  background-color: #EDC8AE;
+  color: #333;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  margin-top: 50px;
+}

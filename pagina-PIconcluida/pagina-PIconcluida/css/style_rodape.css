@@ -1,0 +1,56 @@
+/* Rodapé */
+.rodape {
+    background-color: #ac9b88;
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    
+}
+
+.rodape-conteudo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    
+    
+}
+
+.rodape-coluna {
+    flex: 1;
+    min-width: 150px;
+    margin: 10px;
+    
+    
+}
+
+.rodape-coluna ul {
+    list-style: none;
+    padding: 0;
+    
+}
+
+.rodape-coluna ul li {
+    margin-bottom: 8px; /* Adiciona espaçamento entre os itens da lista */
+
+    
+}
+
+
+.rodape-coluna h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    text-align: left;
+    
+    
+}
+
+.rodape a {
+    color: white; /* Define a cor do texto como branco */
+    text-decoration: none; /* Remove o sublinhado dos links */
+}
+
+.rodape a:hover {
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="css/style_admcadastro.css">
+  <title>Cadastro de Produto</title>
+</head>
+<body>
+  <div id="layout"></div><!-- conexão com o layout_adm.html -->
+
+  <script>
+    fetch("layout_adm.html")
+      .then(response => response.text())
+      .then(data => document.getElementById("layout").innerHTML = data);
+  </script>
+
+  <div class="container">
+    <h1>Cadastro de Produto</h1>
+
+    <form id="formProduto" class="form-box">
+      <label for="produtoDescricao">Descrição:</label>
+      <input type="text" id="produtoDescricao" name="descricao" required>
+
+      <label for="produtoEstoque">Estoque:</label>
+      <input type="number" id="produtoEstoque" name="estoque" required>
+
+      <label for="produtoValor">Valor:</label>
+      <input type="number" id="produtoValor" name="valor" step="0.01" required>
+
+      <label for="produtoCategoria">Categoria:</label>
+      <select id="produtoCategoria" name="categoria_idCategoria" required>
+        <option value="">Selecione uma categoria</option>
+      </select>
+
+      <button type="submit">Cadastrar Produto</button>
+    </form>
+    <br>
+
+   <h2>Resultado:</h2>
+   <div id="resultadoProduto" class="resultado"></div>
+  </div>
+
+  <script>
+    // Carregar categorias
+    fetch("http://localhost:3030/categorias")
+      .then(response => response.json())
+      .then(data => {
+        const categorias = data.values;
+        const select = document.getElementById("produtoCategoria");
+        categorias.forEach(cat => {
+          const option = document.createElement("option");
+          option.value = cat.idCategoria;
+          option.textContent = cat.nome;
+          select.appendChild(option);
+        });
+      });
+    const resultado = document.getElementById("resultadoProduto");
+
+    document.getElementById("formProduto").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const dados = {
+        descricao: document.getElementById("produtoDescricao").value,
+        estoque: document.getElementById("produtoEstoque").value,
+        valor: document.getElementById("produtoValor").value,
+        categoria_idCategoria: document.getElementById("produtoCategoria").value
+      };
+
+      fetch("http://localhost:3030/produtos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dados)
+      })
+        .then(res => {
+          if (!res.ok) {
+            throw new Error("Erro na requisição.");
+          }
+          return res.json();
+        })
+        .then(data => {
+          resultado.style.display = "block";
+          resultado.classList.remove("error");
+
+          resultado.textContent = "Produto cadastrado com sucesso!";
+        })
+
+
+
+            });
+
+    // Submeter formulário
+   
+  
+  </script>
+    <div id="rodape"></div><!-- conexão com rodape.html -->
+
+  <script>
+    fetch("rodape.html")
+      .then(response => response.text())
+      .then(data => document.getElementById("rodape").innerHTML = data);
+  </script>
+</body>
+</html>

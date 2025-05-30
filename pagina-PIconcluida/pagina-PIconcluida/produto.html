@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Pagina de compra de produto</title>
+  <link rel="stylesheet" href="css/style_produto.css"> <!-- Arquivo CSS externo -->
+</head>
+    <script>
+        function selectColor(colorName) {
+  document.getElementById("selected-color").innerText = colorName;
+
+  const options = document.querySelectorAll(".color-option");
+  options.forEach(opt => opt.classList.remove("selected"));
+  event.target.classList.add("selected");
+}
+
+    </script>
+  
+<body>
+
+    <div id="layout"></div><!-- conexao com o arquivo layout.html-->
+
+    <script>
+        fetch("layout_site.html")
+            .then(response => response.text())
+            .then(data => document.getElementById("layout").innerHTML = data);
+    </script>
+  <br>
+  
+  <div class="container">
+    <div class="left-column">
+      <img src="imagens/barbante2.png" alt="Barbante" class="product-img">
+    </div>
+    <div class="right-column">
+      <h1>Barbante Barroco MultiColor - 226m</h1>
+      <p class="price"><span class="new-price">R$ 19,99</span></p>
+      <p>Cor: <strong id="selected-color">500 Clareador</strong></p>
+      
+      <div class="color-selector">
+        <img src="imagens/barbante2.png" alt="500 Caravela" onclick="selectColor('500 Caravela')" class="color-option selected">
+        <img src="imagens/barbanteazul.png" alt="501 Azul" onclick="selectColor('501 Azul')" class="color-option">
+        <!-- Adicione mais cores conforme necessário -->
+      </div>
+
+      <div class="quantity">
+        <label for="qty">Quantidade:</label>
+        <input type="number" id="qty" value="1" min="1">
+      </div>
+      <br>
+
+      <a href="carrinho.html" class="buy-button">Comprar</a>
+
+
+      <ul class="benefits">
+        <li>✔ Compra Segura do início ao fim</li>
+        <li>✔ Troca e Devolução Garantida em 7 Dias</li>
+      
+      </ul>
+    </div>
+  </div>
+  <br>
+
+  <script src="script.js"></script>
+
+  <div id="rodape"></div><!-- conexao com o arquivo layout.html-->
+
+   <script>
+   fetch("rodape.html")
+       .then(response => response.text())
+       .then(data => document.getElementById("rodape").innerHTML = data);
+   </script>
+</body>
+</html>

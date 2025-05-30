@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Minha Conta</title>
+    <link rel="stylesheet" href="css/style_minha_conta.css">
+</head>
+<body>
+
+    <div id="layout"></div>
+
+   <script>
+    document.addEventListener("DOMContentLoaded", function() {
+  
+
+    // Se chegou aqui, está logado, pode carregar layout e preencher dados
+    fetch("layout_site.html")
+        .then(response => response.text())
+        .then(data => document.getElementById("layout").innerHTML = data);
+
+    // Toggle senha (se houver algum input de senha)
+    const toggle = document.getElementById('toggleSenha');
+    const senhaInput = document.getElementById('clienteSenha');
+    if (toggle && senhaInput) {
+        toggle.addEventListener('change', function () {
+        senhaInput.type = this.checked ? 'text' : 'password';
+        });
+    }
+
+
+    // Botão sair
+    const botaoSair = document.querySelector(".sair");
+    if (botaoSair) {
+        botaoSair.addEventListener("click", function (e) {
+        e.preventDefault();
+        localStorage.removeItem('token');
+        localStorage.removeItem('usuario');
+        window.location.href = 'login.html';
+        });
+    }
+    });
+</script>
+
+
+    <div class="box-central">
+        <div class="container">
+            <aside class="menu-lateral">
+                <div class="perfil">
+                    <div class="avatar"></div>
+                    <p>SEJA BEM VINDO!</p>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">MINHA CONTA</a></li>
+                        <li><a href="#">MEUS PEDIDOS</a></li>
+                    </ul>
+                </nav>
+                <a href="#" class="sair">SAIR</a>
+            </aside>
+
+            <main class="conteudo">
+                <div class="titulo">DADOS PESSOAIS</div>
+                <div class="dados">
+                    <div class="coluna">
+                        <p><strong>NOME</strong><br><span id="nomeUsuario">Julia Docema</span></p>
+                        <p><strong>EMAIL</strong><br><span id="emailUsuario">julia@hotmail.com</span></p>
+                        <p><strong>TELEFONE</strong><br><span id="telefoneUsuario">(35) 99985-6661</span></p>
+                    </div>
+                    <div class="coluna">
+                        <p><strong>CEP</strong><br><span id="cepUsuario">37590-000</span></p>
+                        <p><strong>CPF</strong><br><span id="cpfUsuario">097.710.946-10</span></p>
+                    </div>
+                </div>
+                <div class="botoes-acao">
+                <button class="editar">EDITAR</button>
+                <a href="adm_cadastro.html" class="btn-admin">ENTRAR NA CONTA ADMINISTRATIVA</a>
+            </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="rodape"></div>
+
+    <script>
+        fetch("rodape.html")
+            .then(response => response.text())
+            .then(data => document.getElementById("rodape").innerHTML = data);
+    </script>
+
+</body>
+</html>

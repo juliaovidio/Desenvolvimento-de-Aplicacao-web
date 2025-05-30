@@ -1,0 +1,89 @@
+/* Fundo */
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #fdfcfb, #e2d1c3);
+  font-family: Arial, sans-serif;
+}
+
+/* Container Central */
+.container {
+  max-width: 500px;
+  margin: 50px auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+/* Título */
+h1 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Labels e Inputs */
+label {
+  text-align: left;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-top: 15px;
+}
+
+input,
+select {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ebeaea;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #a58e7c;
+}
+
+/* Botão */
+button {
+  background-color: #bca58c;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 20px;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #a58e7c;
+}
+
+/* Resultado da API */
+.resultado {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: rgba(169, 166, 166, 0.795);
+  color: #ffffff;
+  font-family: monospace;
+  font-size: 14px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  border-left: 8px solid #00ffae;
+  display: none;
+  text-align: left;
+}
+
+/* Estilo para erros */
+.resultado.error {
+  border-left-color: #ff4e4e;
+  background-color: rgba(255, 0, 0, 0.1);
+  color: #020202;
+}

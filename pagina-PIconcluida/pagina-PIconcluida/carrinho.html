@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrinho de Compras</title>
+  <link rel="stylesheet" href="css/style_carrinho.css">
+</head>
+<body>
+
+    <div id="layout"></div><!-- conexao com o arquivo layout.html-->
+
+    <script>
+        fetch("layout_site.html")
+            .then(response => response.text())
+            .then(data => document.getElementById("layout").innerHTML = data);
+    </script> 
+  <main class="container">
+    <section class="formulario">
+      
+      <h2>Entrega</h2>
+      <div class="grid">
+        <input type="text" placeholder="Nome">
+        <input type="text" placeholder="Sobrenome">
+      </div>
+      <input type="text" placeholder="CEP">
+      <div class="grid">
+        <input type="text" placeholder="Endereço">
+        <input type="text" placeholder="Número">
+      </div>
+      <div class="grid">
+        <input type="text" placeholder="Apartamento, bloco etc. (opcional)">
+        <input type="text" placeholder="Bairro">
+      </div>
+      <div class="grid">
+        <input type="text" placeholder="Cidade">
+        <input type="text" placeholder="Estado">
+      </div>
+      <input type="text" placeholder="Telefone">
+    
+    </section>
+
+
+     <!-- Seção de Seleção de Pagamento -->
+     <section class="pagamento">
+        <h2>Forma de Pagamento</h2>
+        <div class="opcoes-pagamento">
+          <label>
+          <p>Cartão de Crédito</p>
+          </label>
+          <div id="cartao-form" class="detalhes-pagamento">
+            <input type="text" placeholder="Número do Cartão" required>
+            <input type="text" placeholder="Nome no Cartão" required>
+            <input type="month" placeholder="Validade" required>
+            <input type="text" placeholder="CVV" required>
+          </div>
+          <br>
+
+            <p>PIX</p>
+            <input type="radio" name="forma_pagamento" value="pix">
+          </label>
+          <br>
+          <div id="pix-form" class="detalhes-pagamento" style="display: none;">
+            <p>Detalhes para pagamento via PIX serão gerados após a confirmação.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="resumo">
+        <div class="produto">
+          <img src="imagens/barbante/produto3.png" alt="Produto" width="200">
+          <div>
+            <p><strong>Barbante Barroco Círculo Multicolor - 226m</strong></p>
+            <p>R$ <span id="preco">19,99</span></p>
+          </div>
+        </div>
+  
+  
+        <div class="totais">
+          <p>Subtotal: R$ <span id="subtotal">19,99</span></p>
+
+          <h3>Total: R$ <span id="total">19,99</span></h3>
+        </div>
+      </section>
+
+    <!-- Botão de Finalizar Compra -->
+    <button class="finalizar-compra">Finalizar Compra</button>
+
+  </main>
+
+  <script src="carrinho.js"></script>
+
+  <div id="rodape"></div><!-- conexao com o arquivo layout.html-->
+
+  <script>
+  fetch("rodape.html")
+      .then(response => response.text())
+      .then(data => document.getElementById("rodape").innerHTML = data);
+  </script>
+  
+</body>
+</html>

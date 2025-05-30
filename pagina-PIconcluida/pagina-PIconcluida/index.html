@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu da Loja</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- Arquivo CSS externo -->
+    <link rel="stylesheet" href="css/style_layout.css"> <!-- Arquivo CSS externo -->
+    <link rel="stylesheet" href="css/style_carrossel.css"> <!-- Arquivo CSS externo -->
+   
+
+</head>
+<body>
+
+<div id="layout"></div><!-- conexao com o arquivo layout.html-->
+
+    <script>
+        fetch("layout_site.html")
+            .then(response => response.text())
+            .then(data => document.getElementById("layout").innerHTML = data);
+    </script>
+  <!-- ---------------------------------------------------------------------------------------------------------- -->  
+
+  <!-- Container do carrossel -->
+  <div class="carrossel">
+    <!-- Imagens do carrossel -->
+    <img src="imagens/foto1.jpg" class="active" alt="Banner 1">
+    <img src="imagens/foto2.jpg" alt="Banner 2">
+    <img src="imagens/foto3.jpg" alt="Banner 3">
+
+    <!-- Botões de navegação -->
+    <button class="prev">&#10094;</button> <!-- Seta para a esquerda -->
+    <button class="next">&#10095;</button> <!-- Seta para a direita -->
+  </div>
+
+  <script src="js/carrossel.js"></script>
+
+   <!-- ---------------------------------------------------------------------------------------------------------- -->  
+
+
+ <!-- Seção de Categorias -->
+<div class="categories">
+  <!-- Categoria: Madeira MDF -->
+  <div class="category">
+      <img src="imagens/barbante.png" alt="Barbante">
+      <a href="barbantes.html">Barbantes</a>
+    
+  </div>
+
+  <!-- Categoria: Stencil -->
+  <div class="category">
+      <img src="imagens/mdf.png" alt="Aviamentos">
+      <a href="aviamentos.html">Aviamentos</a>
+
+  </div>
+
+  <!-- Categoria: Tintas -->
+  <div class="category">
+      <img src="imagens/tintas.png" alt="Tintas">
+      <a href="tintas.html">Tintas</a>
+
+  </div>
+</div>
+
+ <!-- ---------------------------------------------------------------------------------------------------------- -->  
+
+<!-- Seção de Promoções -->
+<div class="promo-section">
+  <!-- Título da seção -->
+  <h2>Produtos mais vendidos!</h2>
+
+  <!-- Container do carrossel de produtos -->
+  <div class="carousel-container">
+     
+
+      <!-- Lista de produtos dentro do carrossel -->
+      <div class="carousel">
+          <!-- Produto 1 -->
+          <div class="product">
+              <img src="imagens/barbante2.png" alt="Barbante barroco">
+              <p>Barbante Barroco </p>
+              <span class="price">R$ 46,99</span> <!-- Preço final -->
+          </div>
+
+          <!-- Produto 2 -->
+          <div class="product">
+              <img src="imagens/agulhas.png" alt="Agulhas de Crochê">
+              <p>Kit 12 Agulhas Crochê Alumínio</p>
+              <span class="price">R$ 32,00</span>
+          </div>
+
+          <!-- Produto 3 -->
+          <div class="product">
+              <img src="imagens/fitacetim2.png" alt="Rolo de cetim">
+              <p>Rolo de Cetim </p>
+              <span class="price">R$ 11,99</span>
+          </div>
+      </div>
+
+     
+     
+  </div>
+</div>
+
+ <!-- ---------------------------------------------------------------------------------------------------------- -->  
+
+<!-- Seção de Benefícios -->
+<section class="benefits">
+  <!-- Bloco de benefício: Cupom Primeira Compra -->
+  <div class="benefit">
+      <img src="imagens/cupom.jpg" alt="Ícone de cupom" width="80" height="80"> <!-- Ícone representando o cupom -->
+      <h3>Cupon Primeira Compra</h3> <!-- Título -->
+      <p>Aproveite o nosso cupom de <strong>PRIMEIRACOMPRA</strong>, e faça agora mesmo o seu pedido com um desconto especial. Digite o cupom no carrinho e boas compras!</p>
+  </div>
+
+  <!-- Bloco de benefício: Parcelamento -->
+  <div class="benefit">
+      <img src="imagens/carteira.jpg" alt="Ícone de pagamento" width="80" height="80"> <!-- Ícone de pagamento -->
+      <h3>Parcele em até 3x sem juros</h3>
+      <p>Aqui você paga com cartão, boleto ou Pix. Você pode pagar em até 3x sem juros ou em até 12x com juros no cartão.</p>
+  </div>
+
+  <!-- Bloco de benefício: Entrega rápida e segura -->
+  <div class="benefit">
+      <img src="imagens/entrega.jpg" alt="Ícone de entrega" width="80" height="80"> <!-- Ícone de caminhão (representando entrega) -->
+      <h3>Entrega rápida e segura</h3>
+      <p>Nosso processo de embalagem é feito com muito cuidado para proteger seus produtos, e isso inclui uma <strong>entrega rápida e segura para todo o Brasil</strong>!</p>
+  </div>
+
+  <!-- Bloco de benefício: Segurança na compra -->
+  <div class="benefit">
+      <img src="imagens/segurança.jpg" alt="Ícone de segurança" width="80" height="80"> <!-- Ícone de segurança -->
+      <h3>Segurança, do início ao fim</h3>
+      <p>Você não gostou do que comprou? Devolva! Na <strong>RAIZZ</strong> não há nada que você não possa fazer, porque você está sempre protegido.</p>
+  </div>
+
+  <!-- Bloco de benefício: Depoimentos de clientes -->
+  <div class="benefit">
+      <img src="imagens/comentarios.jpg" alt="Ícone de clientes" width="80" height="80"> <!-- Ícone representando pessoas -->
+      <h3>O que dizem nossos clientes</h3>
+      <p>Nosso compromisso é sempre oferecer a melhor experiência para quem ama artesanato! Quer compartilhar sua experiência? Deixe sua avaliação!</p>
+  </div>
+</section>
+
+ <!-- ---------------------------------------------------------------------------------------------------------- -->  
+  
+    <div id="rodape"></div><!-- conexao com o arquivo layout.html-->
+
+    <script>
+    fetch("rodape.html")
+        .then(response => response.text())
+        .then(data => document.getElementById("rodape").innerHTML = data);
+    </script>
+    

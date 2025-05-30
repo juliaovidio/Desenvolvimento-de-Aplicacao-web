@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style_login.css" />
+  <title>Login do Cliente</title>
+</head>
+<body>
+
+  <div id="layout"></div>
+
+  <main class="main-login">
+    <div class="login-box">
+      <h2>LOGIN</h2>
+
+      <form id="formLogin">
+        <div class="input-group">
+          <span class="icon">👤</span>
+          <input type="email" id="clienteEmail" placeholder="Email" required />
+        </div>
+
+        <div class="input-group">
+          <span class="icon">🔒</span>
+          <input type="password" id="clienteSenha" placeholder="Senha" required />
+        </div>
+
+        <div class="options">
+          <label><input type="checkbox" id="toggleSenha" /> Mostrar senha</label>
+        </div>
+
+        <button type="submit" class="login-button">Login</button>
+
+        <p class="signup-link">
+          Não tem conta? <a href="cadastro.html">Cadastre-se aqui</a>
+        </p>
+      </form>
+
+      <div id="loginResult"></div>
+    </div>
+  </main>
+
+  <div id="rodape"></div>
+
+  <!-- Carregar layout e rodapé -->
+  <script>
+    fetch("layout_site.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("layout").innerHTML = data);
+
+    fetch("rodape.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("rodape").innerHTML = data);
+  </script>
+
+  <!-- Mostrar senha -->
+  <script>
+    const toggle = document.getElementById("toggleSenha");
+    const senhaInput = document.getElementById("clienteSenha");
+
+    toggle.addEventListener("change", () => {
+      senhaInput.type = toggle.checked ? "text" : "password";
+    });
+  </script>
+
+  <!-- Login -->
+  <script>
+    document.getElementById("formLogin").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("clienteEmail").value;
+      const senha = document.getElementById("clienteSenha").value;
+      const resultBox = document.getElementById("loginResult");
+
+      fetch("http://localhost:3030/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, senha })
+      })
+        .then(async res => {
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.message || "Erro no login");
+          return data;
+        })
+        .then(data => {
+          resultBox.classList.remove("error");
+          resultBox.style.display = "block";
+          resultBox.textContent = "✅ Login realizado com sucesso! Redirecionando...";
+
+          if (data.token) {
+            localStorage.setItem("token", data.token);
+            setTimeout(() => {
+              window.location.href = "minha_conta.html";
+            }, 1500);
+          } else {
+            throw new Error("Token não recebido.");
+          }
+        })
+        .catch(error => {
+          resultBox.classList.add("error");
+          resultBox.style.display = "block";
+          resultBox.textContent = "❌ Erro: " + error.message;
+        });
+    });
+  </script>
+
+</body>
+</html>

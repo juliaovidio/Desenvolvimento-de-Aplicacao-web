@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fffaf7;
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  background-color: #89B2C4;
+  padding: 20px 0;
+  text-align: center;
+  color: white;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+}
+
+.sobre-nos {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.sobre-nos h2 {
+  color: #010101;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.sobre-nos p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+footer {
+  background-color: #EDC8AE;
+  color: #333;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style_admdeletar.css" />
+  <title>Deletar Produto</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+  <div id="layout"></div>
+  <script>
+    fetch("layout_adm.html")
+      .then(response => response.text())
+      .then(data => document.getElementById("layout").innerHTML = data);
+  </script>
+
+  <div class="container">
+    <h1>Deletar Produto</h1>
+
+    <!-- Campo texto para digitar o ID -->
+    <label for="postIdTexto">ID do Produto (digite):</label>
+    <input type="number" id="postIdTexto" placeholder="Digite o ID do produto" />
+
+    <!-- Dropdown para selecionar produto pelo ID e nome -->
+    <label for="postIdSelect">Ou selecione o Produto:</label>
+    <select id="postIdSelect">
+      <option value="">-- Selecione um produto --</option>
+    </select>
+
+    <button onclick="deletarPost()">Deletar Produto</button>
+    <br><br>
+    <h2>Resultado:</h2>
+    <pre id="resultadoDelete" class="resultado"></pre>
+  </div>
+
+  <script>
+    function carregarProdutos() {
+      fetch("http://localhost:3030/produtos")
+        .then(res => res.json())
+        .then(data => {
+          const produtos = data.values;
+          const select = document.getElementById("postIdSelect");
+          select.innerHTML = '<option value="">-- Selecione um produto --</option>';
+
+          produtos.forEach(prod => {
+            const idProd = prod.idProduto || prod.id || prod.idproduto;
+            const descricao = prod.descricao || prod.nome || "";
+            const option = document.createElement("option");
+            option.value = idProd;
+            option.textContent = `ID: ${idProd} - ${descricao}`;
+            select.appendChild(option);
+          });
+        })
+        .catch(err => {
+          console.error("Erro ao carregar produtos:", err);
+        });
+    }
+
+    const inputIdTexto = document.getElementById("postIdTexto");
+    const selectId = document.getElementById("postIdSelect");
+
+    inputIdTexto.addEventListener("change", () => {
+      const id = inputIdTexto.value;
+      selectId.value = id || "";
+    });
+
+    selectId.addEventListener("change", () => {
+      const id = selectId.value;
+      inputIdTexto.value = id || "";
+    });
+
+    function deletarPost() {
+    const idproduto = inputIdTexto.value;
+    const resultadoEl = document.getElementById("resultadoDelete");
+
+    if (!idproduto) {
+        resultadoEl.textContent = 'Por favor, insira um ID válido.';
+        resultadoEl.classList.add("error");
+        resultadoEl.style.display = "block";
+        return;
+    }
+
+    // Buscar nome do produto antes de deletar
+    fetch(`http://localhost:3030/produto/${idproduto}`)
+        .then(res => {
+        if (!res.ok) throw new Error("Produto não encontrado.");
+        return res.json();
+        })
+        .then(produto => {
+        const item = produto.values[0];
+
+        const nomeProduto = item?.descricao || "Sem nome";
+        const idProd = item?.idproduto || idproduto;
+
+        // Executar a exclusão
+        axios.delete(`http://localhost:3030/produto/${idProd}`)
+            .then(() => {
+            resultadoEl.textContent = `Produto "${nomeProduto}" (ID ${idProd}) deletado com sucesso!`;
+            resultadoEl.classList.remove("error");
+            resultadoEl.style.display = "block";
+            inputIdTexto.value = "";
+            selectId.value = "";
+            carregarProdutos();
+            })
+            .catch(() => {
+            resultadoEl.textContent = 'Erro ao deletar produto. Verifique o ID e tente novamente.';
+            resultadoEl.classList.add("error");
+            resultadoEl.style.display = "block";
+            });
+        })
+        .catch(() => {
+        resultadoEl.textContent = 'Produto não encontrado. Verifique o ID.';
+        resultadoEl.classList.add("error");
+        resultadoEl.style.display = "block";
+        });
+    }
+
+
+    carregarProdutos();
+  </script>
+
+  <div id="rodape"></div>
+  <script>
+    fetch("rodape.html")
+      .then(response => response.text())
+      .then(data => document.getElementById("rodape").innerHTML = data);
+  </script>
+
+</body>
+</html>

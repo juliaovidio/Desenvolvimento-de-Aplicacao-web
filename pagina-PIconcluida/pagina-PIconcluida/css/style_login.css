@@ -1,0 +1,144 @@
+/* Fundo da página com degradê e centralização */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #ffffff, #e8dccf);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Topo e rodapé ocupando 100% da largura */
+#layout,
+#rodape {
+  width: 100%;
+}
+
+/* Área principal centralizada */
+.main-login {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Caixa do formulário de login */
+.login-box {
+  background: rgba(255, 255, 255, 0.723);
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  max-width: 350px;
+  width: 100%;
+  color: rgb(10, 0, 0);
+  text-align: center;
+}
+
+/* Título da caixa */
+.login-box h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Grupo de inputs com ícones */
+.input-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #ffffff20;
+  margin-bottom: 15px;
+}
+
+.input-group .icon {
+  font-size: 18px;
+  margin-right: 10px;
+  color: white;
+}
+
+/* Campo de entrada */
+.input-group input {
+  border: none;
+  background: transparent;
+  outline: none;
+  color: rgb(24, 22, 22);
+  font-size: 16px;
+  width: 100%;
+}
+
+/* Opções abaixo dos inputs */
+.options {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.options label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Botão de login */
+.login-button {
+  background-color: #b3a492;
+  border: none;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.login-button:hover {
+  background-color: #c7b5a1;
+}
+
+/* Link de cadastro */
+.signup-link {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.signup-link a {
+  color: rgb(5, 5, 5);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* Caixa de resposta (mensagens) */
+#loginResult {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+  font-family: monospace;
+  font-size: 14px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  border-left: 5px solid #00ffae;
+  display: none;
+}
+
+/* Estilo para erro */
+#loginResult.error {
+  border-left-color: #ff4e4e;
+  background-color: rgba(255, 0, 0, 0.1);
+  color: #020202;
+}
+
+/* Estilo para sucesso */
+#loginResult.success {
+  border-left-color: #00ffae;
+  background-color: rgba(0, 255, 174, 0.1);
+  color: #025f4e;
+}

@@ -1,0 +1,132 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fonte padrão */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Menu superior */
+.top-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: hsl(32, 18%, 60%);
+    padding: 10px;
+    color: white;
+    
+}
+
+.search-image img {
+    width: 30px;  /* Reduza para um tamanho adequado */
+    height: auto; /* Mantém a proporção */
+}
+
+/* Logo */
+.logo {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+}
+
+/* Barra de pesquisa */
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.search-image {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    margin-right: 10px;
+    
+}
+
+.search-box input {
+    padding: 10px;
+    width: 400px;
+}
+
+/* Ícones */
+.icons {
+    display: flex;
+    align-items: center;
+    
+}
+
+.icon img {
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin: 10px;
+}
+.icon {
+    text-align: center;
+    margin-left: 15px;
+    cursor: pointer;
+    
+}
+
+.icon a {
+    text-decoration: none;
+    text-align: center;
+    color: white;
+}
+
+/* Menu inferior */
+.bottom-menu {
+    display: flex;
+    justify-content: center;
+    background-color: #c7b5a1;
+    padding: 10px;
+    color: white;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    position: relative;
+    margin: 0 15px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.nav-links li:hover {
+    background-color: #555;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: #444;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    padding: 5px 0;
+    z-index: 1000;
+}
+/* Itens dentro do submenu */
+.submenu li {
+    padding: 5px 15px;
+    white-space: nowrap; /* Impede que os itens quebrem linha */
+
+}
+.nav-links li:hover .submenu {
+    display: block;
+}

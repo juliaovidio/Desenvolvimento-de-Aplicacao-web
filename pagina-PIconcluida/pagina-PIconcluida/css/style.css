@@ -1,0 +1,140 @@
+
+/* Seção de categorias */
+.categories {
+    display: flex; /* Exibe os elementos lado a lado */
+    justify-content: center; /* Centraliza as categorias horizontalmente */
+    gap: 20px; /* Espaçamento entre as categorias */
+    padding: 20px; /* Espaçamento externo */
+}
+
+/* Estilo individual das categorias */
+.category {
+    text-align: center; /* Centraliza o texto */
+    width: 100px; /* Define a largura da categoria */
+}
+
+/* Estilo das imagens dentro das categorias */
+.category img {
+    width: 80px; /* Largura fixa */
+    height: 80px; /* Altura fixa */
+    border-radius: 50%; /* Torna as imagens circulares */
+    border: 2px solid gold; /* Adiciona uma borda dourada */
+}
+
+/* Estilo do texto das categorias */
+.category p {
+    margin-top: 5px; /* Espaçamento entre a imagem e o texto */
+    font-weight: bold; /* Texto em negrito */
+    font-size: 14px; /* Tamanho da fonte */
+}
+
+/* Seção de promoções */
+.promo-section {
+    text-align: center; /* Centraliza o conteúdo */
+    padding: 20px; /* Espaçamento */
+}
+
+/* Container do carrossel de produtos */
+.carousel-container {
+    display: flex; /* Exibe os itens em linha */
+    align-items: center; /* Centraliza verticalmente */
+    position: relative; /* Permite posicionamento absoluto dos botões */
+    max-width: 800px; /* Largura máxima do carrossel */
+    margin: auto; /* Centraliza horizontalmente */
+    overflow: hidden; /* Esconde itens que ultrapassam a largura do container */
+}
+
+/* Estilização do carrossel */
+.carousel {
+    display: flex; /* Itens dispostos em linha */
+    transition: transform 0.5s ease-in-out; /* Efeito suave ao trocar os itens */
+    gap: 20px; /* Espaçamento entre os produtos */
+}
+
+/* Estilização dos produtos */
+.product {
+    min-width: 200px; /* Largura mínima de cada produto */
+    text-align: center; /* Centraliza o conteúdo */
+    border: 1px solid #ddd; /* Borda sutil */
+    padding: 10px; /* Espaçamento interno */
+    border-radius: 10px; /* Bordas arredondadas */
+    background: #fff; /* Fundo branco */
+}
+
+/* Ajuste das imagens dos produtos */
+.product img {
+    width: 100px; /* Largura total do container */
+    max-height: px; /* Altura máxima */
+    object-fit: contain; /* Mantém a proporção sem cortar a imagem */
+}
+
+/* Estilo do preço */
+.price {
+    display: block; /* Exibe como bloco */
+    font-size: 16px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito */
+    color: green; /* Cor verde */
+}
+
+/* Botões de navegação do carrossel de promoções */
+.prev-btn, .next-btn {
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro semi-transparente */
+    color: white; /* Cor do texto */
+    border: none; /* Remove borda */
+    padding: 10px; /* Espaçamento interno */
+    cursor: pointer; /* Cursor de clique */
+    position: absolute; /* Posicionamento absoluto dentro do carrossel */
+    top: 50%; /* Centraliza verticalmente */
+    transform: translateY(-50%); /* Ajuste fino da centralização */
+    z-index: 2; /* Garante que fiquem acima do conteúdo */
+}
+
+/* Botão anterior fica à esquerda */
+.prev-btn { left: 0; }
+
+/* Botão próximo fica à direita */
+.next-btn { right: 0; }
+
+/* Efeito de hover nos botões */
+.prev-btn:hover, .next-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo mais escuro ao passar o mouse */
+}
+/* Seção principal dos benefícios */
+.benefits {
+    display: flex; /* Exibe os itens lado a lado */
+    justify-content: space-between; /* Distribui os itens uniformemente */
+    flex-wrap: wrap; /* Permite que os itens quebrem linha se necessário */
+    gap: 20px; /* Adiciona um espaçamento entre os itens */
+    padding: 40px 20px; /* Espaçamento interno da seção */
+    text-align: center; /* Centraliza os textos */
+    max-width: 1200px; /* Define um limite de largura */
+    margin: auto; /* Centraliza a seção na tela */
+}
+
+/* Estilização de cada benefício */
+.benefit {
+    flex: 1; /* Faz com que cada bloco ocupe o mesmo espaço */
+    min-width: 200px; /* Define um tamanho mínimo para cada item */
+    max-width: 250px; /* Define um tamanho máximo para cada item */
+}
+
+/* Estilização das imagens dos ícones */
+.benefit img {
+    width: 50px; /* Define um tamanho fixo para os ícones */
+    height: 50px; /* Mantém a proporção do ícone */
+    margin-bottom: 10px; /* Adiciona um espaçamento abaixo do ícone */
+}
+
+/* Estilização dos títulos */
+.benefit h3 {
+    font-size: 18px; /* Define o tamanho do título */
+    font-weight: bold; /* Deixa o título em negrito */
+    margin-bottom: 10px; /* Adiciona um espaço abaixo do título */
+}
+
+/* Estilização do texto */
+.benefit p {
+    font-size: 14px; /* Define o tamanho do texto */
+    color: #444; /* Cor levemente escura para facilitar a leitura */
+}
+

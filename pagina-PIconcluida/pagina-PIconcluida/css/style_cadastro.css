@@ -1,0 +1,120 @@
+/* Define o corpo da página com um fundo em degradê azul e centraliza o conteúdo */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #ffffff, #e8dccf); /* Degradê azul */
+  min-height: 100vh; /* Garante que o corpo ocupe toda a altura da tela */
+  display: flex;
+  flex-direction: column; /* Permite posicionar o conteúdo principal entre topo e rodapé */
+}
+
+/* Estilo básico para os containers de topo (#layout) e rodapé (#rodape) */
+#layout,
+#rodape {
+  width: 100%;
+}
+
+  .container {
+    max-width: 400px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 30px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px
+  }
+
+  .container h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 25px;
+  }
+
+  .input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 10px;
+    background-color: #fff;
+  }
+
+  .input-group .icon {
+    margin-right: 8px;
+    font-size: 18px;
+  }
+
+  .input-group input,
+  .input-group select {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: transparent;
+  }
+
+    button[type="submit"] {
+    width: 100%; /* Ocupa toda a largura */
+    padding: 12px; /* Altura do botão */
+    background-color: #b5a38d; /* Cor de fundo bege/marrom claro */
+    color: white; /* Cor do texto */
+    font-size: 16px; /* Tamanho do texto */
+    font-weight: bold; /* Texto em negrito */
+    border: none; /* Remove borda padrão */
+    border-radius: 10px; /* Cantos arredondados */
+    cursor: pointer; /* Cursor de clique */
+    margin-top: 10px; /* Espaço acima do botão */
+  }
+
+  button[type="submit"]:hover {
+    background-color: #a1846e;
+  }
+
+  .cadastro-link {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .cadastro-link a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    text-decoration: underline; /* Sublinhado */
+  }
+
+  /* Estilo base para o resultado da API */
+  #clienteResult {
+    margin-top: 20px; /* Espaço acima do bloco */
+    padding: 15px; /* Espaçamento interno */
+    border-radius: 8px; /* Bordas arredondadas */
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo escuro com transparência */
+    color: #ffffff; /* Cor do texto */
+    font-family: monospace; /* Fonte monoespaçada para mensagens */
+    font-size: 14px;
+    white-space: pre-wrap; /* Mantém quebras de linha e espaços */
+    word-break: break-word; /* Quebra palavras longas se necessário */
+    border-left: 5px solid #00ffae; /* Borda lateral indicando sucesso */
+    display: none; /* Escondido por padrão */
+  }
+
+  /* Estilo aplicado quando há erro */
+  #clienteResult.error {
+    border-left-color: #ff4e4e; /* Vermelho para indicar erro */
+    background-color: rgba(255, 0, 0, 0.1); /* Fundo avermelhado claro */
+    color: #ffffff; /* Texto mais escuro */
+  }
+
+  /* Sugestões de autocomplete ou ajuda abaixo de inputs */
+  .sugestoes-box div {
+    padding: 5px 10px; /* Espaçamento interno */
+    border-bottom: 1px solid #eee; /* Linha separadora */
+  }
+
+  /* Destaque ao passar o mouse sobre uma sugestão */
+  .sugestoes-box div:hover {
+    background-color: #dddbdb; /* Fundo cinza claro no hover */
+    cursor: pointer; /* Cursor de clique */
+  }

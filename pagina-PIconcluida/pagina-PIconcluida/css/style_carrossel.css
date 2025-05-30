@@ -1,0 +1,61 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .carrossel {
+    width: 100%;
+    max-width: 1520px;
+    height: 500px;
+    margin: 0px auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  
+  .carrossel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    opacity: 0;
+    /* Removida a transição suave */
+  }
+  
+  .carrossel img.active {
+    left: 0;
+    opacity: 1;
+  }
+  
+  /* Estilo das setas */
+  .carrossel button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-60%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    font-size: 15px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    transition: background-color 0.3s;
+  }
+  
+  .carrossel button:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .carrossel .prev {
+    left: 10px;
+  }
+  
+  .carrossel .next {
+    right: 10px;
+  }
+  

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Sobre Nós</title>
+  <link rel="stylesheet" href="css/style_sobre.css">
+</head>
+<body>
+     <div id="layout"></div><!-- conexao com o arquivo layout.html-->
+
+    <script>
+        fetch("layout_site.html")
+            .then(response => response.text())
+            .then(data => document.getElementById("layout").innerHTML = data);
+            document.addEventListener("DOMContentLoaded", function() {
+              const toggle = document.getElementById('toggleSenha');
+              const senhaInput = document.getElementById('clienteSenha');
+
+              toggle.addEventListener('change', function () {
+                senhaInput.type = this.checked ? 'text' : 'password';
+    });
+  });
+    </script>
+
+<!-- ---------------------------------------------------------------------------------------------------------- --> 
+
+  <section class="sobre-nos">
+    <h2>Sobre Nós</h2>
+    <p>
+      Nossa loja de aviamentos nasceu da paixão por transformar ideias em realidade. Aqui, você encontra uma seleção completa de materiais para costura, artesanato, bordado, tricô, crochê e muito mais. Trabalhamos com produtos de alta qualidade e prezamos pelo atendimento próximo e acolhedor, sempre prontos para ajudar você a encontrar os melhores itens para seus projetos.
+    </p>
+    <p>
+      Se você é profissional da área, estudante de moda ou amante do "faça você mesmo", esse é o seu lugar! Nosso compromisso é inspirar sua criatividade com variedade, bom gosto e carinho em cada detalhe.
+    </p>
+  </section>
+
+  
+    <br>
+    <br>
+    <br>
+
+    <!-- ---------------------------------------------------------------------------------------------------------- -->  
+  
+    <div id="rodape"></div><!-- conexao com o arquivo layout.html-->
+
+    <script>
+    fetch("rodape.html")
+        .then(response => response.text())
+        .then(data => document.getElementById("rodape").innerHTML = data);
+    </script>
+  
+</body>
+</html>

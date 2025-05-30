@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cadastro de Cliente</title>
+  <link rel="stylesheet" href="css/style_cadastro.css" />
+</head>
+<body>
+  <div id="layout"></div>
+  <div class="container">
+    <h1>Cadastro de Cliente</h1>
+    <form id="formCliente" autocomplete="off">
+      <div class="input-group"><span class="icon">👤</span><input type="text" id="clienteNome" placeholder="Nome" required></div>
+      <div class="input-group"><span class="icon">🆔</span><input type="text" id="clienteCPF" placeholder="CPF" required></div>
+      <div class="input-group"><span class="icon">📞</span><input type="tel" id="clienteTelefone" placeholder="Telefone" required></div>
+      <div class="input-group"><span class="icon">🏠</span><input type="text" id="clienteEndereco" placeholder="Endereço" required></div>
+      <div class="input-group"><span class="icon">📮</span><input type="text" id="clienteCEP" placeholder="CEP" required></div>
+      <div class="input-group"><span class="icon">📧</span><input type="email" id="clienteEmail" placeholder="E-mail" required></div>
+      <div class="input-group"><span class="icon">⚥</span>
+        <select id="clienteGenero" required>
+          <option value="">Selecione o gênero</option>
+          <option value="Masculino">Masculino</option>
+          <option value="Feminino">Feminino</option>
+          <option value="Outro">Outro</option>
+        </select>
+      </div>
+      <div class="input-group"><span class="icon">🔒</span><input type="password" id="clienteSenha" placeholder="Senha" required></div>
+      <div class="input-group" style="position: relative;">
+        <span class="icon">🌆</span>
+        <input type="text" id="clienteCidade" placeholder="Cidade" autocomplete="off" required>
+        <input type="hidden" id="idCidade">
+        <div id="sugestoesCidade" class="sugestoes-box" style="position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid #ccc; max-height: 120px; overflow-y: auto; z-index: 1000;"></div>
+      </div>
+      <input type="hidden" id="clienteCargo" value="2">
+      <p class="cadastro-link">Já possui uma conta? <a href="login.html">Entre agora</a>.</p>
+      <button type="submit">Cadastrar Cliente</button>
+    </form>
+    <pre id="clienteResult"></pre>
+  </div>
+  <div id="rodape"></div>
+
+  <script>
+    fetch("layout_site.html")
+      .then(res => res.text())
+      .then(html => document.getElementById("layout").innerHTML = html);
+
+    fetch("rodape.html")
+      .then(res => res.text())
+      .then(html => document.getElementById("rodape").innerHTML = html);
+
+    const cidadeInput = document.getElementById('clienteCidade');
+    const sugestoesBox = document.getElementById('sugestoesCidade');
+    const cidadeIdHidden = document.getElementById('idCidade');
+
+    cidadeInput.addEventListener('input', function () {
+      const query = this.value.toLowerCase();
+      cidadeIdHidden.value = '';
+
+      if (query.length < 2) {
+        sugestoesBox.innerHTML = '';
+        return;
+      }
+
+      fetch(`http://localhost:3030/cidades?q=${encodeURIComponent(query)}`)
+        .then(res => res.json())
+        .then(data => {
+          const cidades = data.values || [];
+          const cidadesFiltradas = cidades.filter(cidade =>
+            cidade.municipio.toLowerCase().includes(query) ||
+            cidade.estado.toLowerCase().includes(query)
+          );
+
+          sugestoesBox.innerHTML = '';
+
+          if (cidadesFiltradas.length === 0) {
+            const div = document.createElement('div');
+            div.textContent = 'Nenhuma cidade encontrada';
+            sugestoesBox.appendChild(div);
+            return;
+          }
+
+          cidadesFiltradas.forEach(cidade => {
+            const div = document.createElement('div');
+            div.textContent = `${cidade.municipio} - ${cidade.estado}`;
+            div.addEventListener('click', () => {
+              cidadeInput.value = `${cidade.municipio} - ${cidade.estado}`;
+              cidadeIdHidden.value = cidade.idCidade;
+              sugestoesBox.innerHTML = '';
+            });
+            sugestoesBox.appendChild(div);
+          });
+        })
+        .catch(() => {
+          sugestoesBox.innerHTML = '';
+        });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!sugestoesBox.contains(e.target) && e.target !== cidadeInput) {
+        sugestoesBox.innerHTML = '';
+      }
+    });
+
+    document.getElementById("formCliente").addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (!cidadeIdHidden.value) {
+        alert("Por favor, selecione uma cidade da lista.");
+        return;
+      }
+
+      const cliente = {
+        nome: document.getElementById('clienteNome').value,
+        cpf: document.getElementById('clienteCPF').value,
+        telefone: document.getElementById('clienteTelefone').value,
+        endereco: document.getElementById('clienteEndereco').value,
+        cep: document.getElementById('clienteCEP').value,
+        email: document.getElementById('clienteEmail').value,
+        genero: document.getElementById('clienteGenero').value,
+        senha: document.getElementById('clienteSenha').value,
+        cidade_idCidade: cidadeIdHidden.value,
+        idcargo: document.getElementById('clienteCargo').value
+      };
+
+      fetch('http://localhost:3030/usuarios', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(cliente)
+      })
+
+      .then(res => res.json())
+      .then(data => {
+        const resultEl = document.getElementById('clienteResult');
+
+        const mensagem = (data?.message || '').toLowerCase();
+
+        if (mensagem.includes('sucesso')) {
+          // Mostrar mensagem com link para login
+          resultEl.innerHTML = `✅ Cadastro realizado com sucesso! <br>
+            <a href="login.html" style="color: white; text-decoration: underline;">Realize aqui login</a>`;
+          resultEl.classList.remove('error');
+          resultEl.classList.add('success');
+        } else {
+          resultEl.textContent = "❌ Erro ao cadastrar cliente: " + (data.message || 'Erro desconhecido.');
+          resultEl.classList.remove('success');
+          resultEl.classList.add('error');
+        }
+
+        resultEl.style.display = 'block';
+      })
+
+
+
+
+    
+    });
+  </script>
+</body>
+</html>

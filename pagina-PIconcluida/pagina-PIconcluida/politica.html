@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade - Raizz</title>
+    <link rel="stylesheet" href="css/style_politica.css">
+</head>
+<body>
+
+    <div id="layout"></div><!-- conexao com o arquivo layout.html-->
+
+    <script>
+        fetch("layout_site.html")
+            .then(response => response.text())
+            .then(data => document.getElementById("layout").innerHTML = data);
+            document.addEventListener("DOMContentLoaded", function() {
+              const toggle = document.getElementById('toggleSenha');
+              const senhaInput = document.getElementById('clienteSenha');
+
+              toggle.addEventListener('change', function () {
+                senhaInput.type = this.checked ? 'text' : 'password';
+    });
+  });
+    </script>
+
+<!-- ---------------------------------------------------------------------------------------------------------- --> 
+
+   
+
+    <main class="conteudo">
+        <h1>Política de Privacidade</h1>
+        <p>
+            A Raizz respeita a sua privacidade e está comprometida em proteger os dados pessoais dos nossos clientes.
+            Esta política explica como coletamos, usamos, armazenamos e protegemos suas informações.
+        </p>
+
+        <h2>Coleta de Informações</h2>
+        <p>
+            Coletamos dados fornecidos diretamente por você, como nome, e-mail, endereço e telefone, além de informações de navegação,
+            cookies e histórico de compras.
+        </p>
+
+        <h2>Uso das Informações</h2>
+        <p>
+            Utilizamos seus dados para processar pedidos, oferecer atendimento personalizado, melhorar sua experiência no site e enviar comunicações relevantes.
+        </p>
+
+        <h2>Compartilhamento de Dados</h2>
+        <p>
+            Seus dados não são vendidos. Podemos compartilhar informações com parceiros apenas para fins operacionais, como entrega e pagamento, sempre com segurança.
+        </p>
+
+        <h2>Segurança</h2>
+        <p>
+            Adotamos medidas técnicas e organizacionais para proteger suas informações contra acesso não autorizado, alteração ou divulgação.
+        </p>
+
+        <h2>Seus Direitos</h2>
+        <p>
+            Você pode solicitar a correção ou exclusão dos seus dados a qualquer momento. Para isso, entre em contato conosco.
+        </p>
+
+        <h2>Alterações na Política</h2>
+        <p>
+            Esta política pode ser atualizada periodicamente. Recomendamos a leitura regular para estar ciente das mudanças.
+        </p>
+
+        <p>
+            Em caso de dúvidas, entre em contato conosco pelo nosso <a href="contato.html">formulário de contato</a>.
+        </p>
+    </main>
+
+    <script src="script.js"></script>
+
+  <div id="rodape"></div><!-- conexao com o arquivo layout.html-->
+
+   <script>
+   fetch("rodape.html")
+       .then(response => response.text())
+       .then(data => document.getElementById("rodape").innerHTML = data);
+   </script>
+</body>
+
+</body>
+</html>

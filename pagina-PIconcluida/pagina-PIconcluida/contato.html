@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Contato - Raizz Aviamentos</title>
+  <link rel="stylesheet" href="css/style_contato.css">
+</head>
+<body>
+  
+    <div id="layout"></div><!-- conexao com o arquivo layout.html-->
+
+    <script>
+        fetch("layout_site.html")
+            .then(response => response.text())
+            .then(data => document.getElementById("layout").innerHTML = data);
+    </script>
+
+  <main class="contato">
+    <h2>Fale Conosco</h2>
+    <p>Tem dúvidas, sugestões ou quer fazer um pedido? Preencha o formulário abaixo ou entre em contato pelos nossos canais.</p>
+
+    <form action="#" method="post">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="mensagem">Mensagem:</label>
+      <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <div class="info-contato">
+      <p><strong>Email:</strong> contato@raizzaviamentos.com</p>
+      <p><strong>Telefone:</strong> (11) 2796-8952</p>
+      <p><strong>Localização:</strong> R. Bresser, 1540 - Brás, São Paulo - SP, 03053-000</p>
+      <p><strong>Instagram:</strong> raizzcroche</p>
+    </div>
+  </main>
+
+   <div id="rodape"></div><!-- conexao com o arquivo layout.html-->
+
+  <script>
+  fetch("rodape.html")
+      .then(response => response.text())
+      .then(data => document.getElementById("rodape").innerHTML = data);
+  </script>
+  
+</body>
+</html>
