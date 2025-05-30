@@ -1,7 +1,7 @@
 # PI-Desenvolvimento-de-Aplica-o-Web
 
 # Descrição do projeto:
-Este projeto é um site desenvolvido para uma loja de aviamentos, com o objetivo de oferecer uma experiência completa e eficiente tanto para os clientes quanto para os administradores. A plataforma foi construída utilizando HTML, CSS e JSON, e integra-se a uma API responsável pela comunicação com o banco de dados, garantindo dinamismo e atualização em tempo real das informações. A aplicação estará rodando localmente http://localhost:3030 
+Este projeto é um site desenvolvido para uma loja de aviamentos, com o objetivo de oferecer uma experiência completa e eficiente tanto para os clientes quanto para os administradores. A plataforma foi construída utilizando HTML, CSS e JSON, e integra-se a uma API responsável pela comunicação com o banco de dados com o uso de um datawerehouse para alimentar informações, garantindo dinamismo e atualização em tempo real das informações, por ultimo fizemos nosso servidor na AWS usando o EC2 e criamos um banco no RDS (executado e funcional porem não aplicado no projeto) . A aplicação estará rodando localmente http://localhost:3030. 
 
 # As pastas de acordo com as materias 
 PI2025 - materia: Tecnologias para Desenvolvimento Web
